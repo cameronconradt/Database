@@ -12,6 +12,7 @@ public:
 	Expression(Lexicon* lex, int inpos);
 	~Expression();
 	string tostring();
+	string type();
 protected:
 	Lexicon* mylex;
 	int pos;

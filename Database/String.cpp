@@ -20,3 +20,8 @@ string String::tostring()
 {
 	return mytoken->gettext();
 }
+
+string String::type()
+{
+	return "string";
+}

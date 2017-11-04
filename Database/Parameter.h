@@ -7,5 +7,6 @@ public:
 	Parameter();
 	~Parameter();
 	virtual string tostring()= 0;
+	virtual string type() = 0;
 };
 

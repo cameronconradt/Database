@@ -48,5 +48,23 @@ void Database::maketables()
 			}
 		}
 	}
+}
+
+void Database::getresults()
+{
 	vector<Query*> myqueries = datalog->getqueries()->getqueries();
+	for (int i = 0; i < myqueries.size(); i++)
+	{
+		for (int j = 0; j < tables.size(); j++)
+		{
+			String temp(myqueries[i]->getid()->gettoken());
+			if (temp == tables[j]->getName())
+				evaluate(myqueries[i], tables[j]);
+		}
+	}
+}
+
+void Database::evaluate(Query* query, Table* table)
+{
+
 }

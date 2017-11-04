@@ -48,16 +48,10 @@
     <ClInclude Include="Header.h">
       <Filter>Header Files\Table</Filter>
     </ClInclude>
-    <ClInclude Include="Parameter.h">
-      <Filter>Header Files\Table</Filter>
-    </ClInclude>
     <ClInclude Include="Row.h">
       <Filter>Header Files\Table</Filter>
     </ClInclude>
     <ClInclude Include="SelectionKey.h">
-      <Filter>Header Files\Table</Filter>
-    </ClInclude>
-    <ClInclude Include="String.h">
       <Filter>Header Files\Table</Filter>
     </ClInclude>
     <ClInclude Include="Table.h">
@@ -91,6 +85,18 @@
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
     <ClInclude Include="Predicate.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Id.h">
+      <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Expression.h">
       <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
@@ -132,6 +138,15 @@
       <Filter>Source Files\Table</Filter>
     </ClCompile>
     <ClCompile Include="String.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Expression.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Id.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
   </ItemGroup>

@@ -116,9 +116,11 @@
     <ClInclude Include="ColValueKey.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="DatalogProgram.h" />
+    <ClInclude Include="Expression.h" />
     <ClInclude Include="Fact.h" />
     <ClInclude Include="Facts.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="Id.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="Predicate.h" />
@@ -137,8 +139,11 @@
   <ItemGroup>
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DatalogProgram.cpp" />
+    <ClCompile Include="Expression.cpp" />
     <ClCompile Include="Fact.cpp" />
     <ClCompile Include="Facts.cpp" />
+    <ClCompile Include="Id.cpp" />
+    <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="Predicate.cpp" />
     <ClCompile Include="Queries.cpp" />
     <ClCompile Include="Query.cpp" />

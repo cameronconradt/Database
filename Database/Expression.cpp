@@ -86,3 +86,8 @@ void Expression::addtoparameters()
 	}
 	pos++;
 }
+
+string Expression::type()
+{
+	return "expression";
+}
