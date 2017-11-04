@@ -17,6 +17,13 @@ public:
 		else
 			return false;
 	}
+	inline bool operator < (const Id rh)
+	{
+		if (this->mytoken < rh.mytoken)
+			return true;
+		else
+			return false;
+	}
 protected:
 	Token* mytoken;
 };

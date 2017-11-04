@@ -76,7 +76,7 @@ void Facts::add()
 		}
 	}
 }
-vector<Fact*> getfacts()
+vector<Fact*> Facts::getfacts()
 {
 	return facts;
 }

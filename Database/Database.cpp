@@ -6,6 +6,7 @@ Database::Database(DatalogProgram* indatalog)
 {
 	datalog = indatalog;
 	maketables();
+	getresults();
 }
 
 
@@ -18,9 +19,9 @@ void Database::maketables()
 	vector<Scheme*> myschemes = datalog->getschemes()->getschemes();
 	for (int i = 0; i < myschemes.size(); i++)
 	{
-		String* name = new String(myschemes[i]->getid()->gettoken);
+		String* name = new String(myschemes[i]->getid()->gettoken());
 		set<String> colnames;
-		vector<Id*> schemenames = myschemes[i]->getcolumnNames;
+		vector<Id*> schemenames = myschemes[i]->getcolumnNames();
 		for (int j = 0; j < schemenames.size(); j++)
 		{
 			String col(schemenames[j]->gettoken());
@@ -33,7 +34,7 @@ void Database::maketables()
 	vector<Fact*> myfacts = datalog->getfacts()->getfacts();
 	for (int i = 0; i < myfacts.size(); i++)
 	{
-		String name(myfacts[i]->getid()->gettoken);
+		String name(myfacts[i]->getid()->gettoken());
 		for (int j = 0; j < tables.size(); j++)
 		{
 			if (name == tables[i]->getName())
@@ -66,5 +67,61 @@ void Database::getresults()
 
 void Database::evaluate(Query* query, Table* table)
 {
-
+	Table* result = new Table(table);
+	set<SelectionKey*> selkeys;
+	vector<Parameter*> parameters = query->getparameters();
+	set<Parameter*> ids;
+	set<int> coltokeep;
+	for (int i = 0; i < parameters.size(); i++)
+	{
+		if (parameters[i]->type() == "string")
+		{
+			String* temp = dynamic_cast<String*>(parameters[i]);
+			SelectionKey* tempkey = new ColValueKey(i, *temp);
+			selkeys.insert(tempkey);
+		}
+		else
+		{
+			if (parameters[i]->type() == "id")
+			{
+				ids.insert(parameters[i]);
+			}
+			for (int j = 0; j < i; j++)
+			{
+				if (parameters[j]->type() == "id" && parameters[i]->type() == "id")
+				{
+					if (parameters[j] == parameters[i])
+					{
+						SelectionKey* tempkey = new ColColKey(j, i);
+						selkeys.insert(tempkey);
+					}
+				}
+			}
+		}
+	}
+	result = result->select(selkeys);
+	for (auto i : ids)
+	{
+		for (int j = 0; j < parameters.size(); j++)
+		{
+			if (parameters[j] == i)
+			{
+				coltokeep.insert(j);
+				break;
+			}
+		}
+	}
+	result = result->project(coltokeep);
+	set<ColumnNamePair> newNames;
+	int col = 0;
+	for (auto i : coltokeep)
+	{
+		Id* tempid = dynamic_cast<Id*>(parameters[i]);
+		String tempstr(tempid->gettoken());
+		ColumnNamePair temp(col, tempstr);
+		newNames.insert(temp);
+		col++;
+	}
+	result = result->rename(newNames);
+	results.push_back(result);
 }

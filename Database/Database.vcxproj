@@ -144,13 +144,16 @@
     <ClCompile Include="Facts.cpp" />
     <ClCompile Include="Id.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="parser.cpp" />
     <ClCompile Include="Predicate.cpp" />
     <ClCompile Include="Queries.cpp" />
     <ClCompile Include="Query.cpp" />
+    <ClCompile Include="Row.cpp" />
     <ClCompile Include="Rule.cpp" />
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Scheme.cpp" />
     <ClCompile Include="Schemes.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Table.cpp" />
   </ItemGroup>

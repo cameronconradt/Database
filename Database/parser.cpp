@@ -325,4 +325,7 @@ string parser::tostring()
 		return ss.str();
 	}
 }
-
+DatalogProgram* parser::getprogram()
+{
+	return mydata;
+}
