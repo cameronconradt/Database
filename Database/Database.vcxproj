@@ -146,6 +146,8 @@
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Scheme.cpp" />
     <ClCompile Include="Schemes.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

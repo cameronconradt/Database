@@ -101,3 +101,8 @@ void Table::addRow(vector<String> invalues)
 {
 	rows.insert(new Row(invalues));
 }
+
+String Table::getName()
+{
+	return name;
+}

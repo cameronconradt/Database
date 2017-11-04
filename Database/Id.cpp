@@ -17,3 +17,8 @@ string Id::tostring()
 {
 	return mytoken->gettext();
 }
+
+Token* Id::gettoken()
+{
+	return mytoken;
+}

@@ -8,6 +8,7 @@ public:
 	Id(Token* token);
 	~Id();
 	string tostring();
+	Token* gettoken();
 protected:
 	Token* mytoken;
 };
