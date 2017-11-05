@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Parser">
       <UniqueIdentifier>{562a8a00-6264-4673-853b-4097b4f6ca3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Lexicon">
+      <UniqueIdentifier>{2756a19c-21cb-4c62-a7e0-e8f693a1fc31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database.h">
@@ -55,9 +58,6 @@
       <Filter>Header Files\Table</Filter>
     </ClInclude>
     <ClInclude Include="Table.h">
-      <Filter>Header Files\Table</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.h">
       <Filter>Header Files\Table</Filter>
     </ClInclude>
     <ClInclude Include="Fact.h">
@@ -98,6 +98,12 @@
     </ClInclude>
     <ClInclude Include="Expression.h">
       <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Header Files\Lexicon</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexicon.h">
+      <Filter>Header Files\Lexicon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

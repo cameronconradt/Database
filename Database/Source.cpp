@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "parser.h"
+#include "DatalogProgram.h"
 #include "Database.h"
 
 using namespace std;

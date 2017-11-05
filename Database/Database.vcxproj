@@ -121,6 +121,7 @@
     <ClInclude Include="Facts.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Id.h" />
+    <ClInclude Include="Lexicon.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="Predicate.h" />
