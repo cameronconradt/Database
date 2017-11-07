@@ -120,6 +120,7 @@
     <ClInclude Include="Fact.h" />
     <ClInclude Include="Facts.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="HeadPredicate.h" />
     <ClInclude Include="Id.h" />
     <ClInclude Include="Lexicon.h" />
     <ClInclude Include="Parameter.h" />
@@ -138,13 +139,18 @@
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColColKey.cpp" />
+    <ClCompile Include="ColumnNamePair.cpp" />
+    <ClCompile Include="ColValueKey.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DatalogProgram.cpp" />
     <ClCompile Include="Expression.cpp" />
     <ClCompile Include="Fact.cpp" />
     <ClCompile Include="Facts.cpp" />
     <ClCompile Include="Header.cpp" />
+    <ClCompile Include="HeadPredicate.cpp" />
     <ClCompile Include="Id.cpp" />
+    <ClCompile Include="Lexicon.cpp" />
     <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="Predicate.cpp" />
@@ -155,9 +161,11 @@
     <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Scheme.cpp" />
     <ClCompile Include="Schemes.cpp" />
+    <ClCompile Include="SelectionKey.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

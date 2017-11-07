@@ -28,6 +28,9 @@
     <Filter Include="Header Files\Lexicon">
       <UniqueIdentifier>{2756a19c-21cb-4c62-a7e0-e8f693a1fc31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Lexicon">
+      <UniqueIdentifier>{c9c3d9f9-6e82-479f-802c-629863893b12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Database.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="Lexicon.h">
       <Filter>Header Files\Lexicon</Filter>
     </ClInclude>
+    <ClInclude Include="HeadPredicate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Database.cpp">
@@ -166,6 +172,27 @@
     </ClCompile>
     <ClCompile Include="Header.cpp">
       <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="ColColKey.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="ColumnNamePair.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="ColValueKey.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadPredicate.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionKey.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexicon.cpp">
+      <Filter>Source Files\Lexicon</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Source Files\Lexicon</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
