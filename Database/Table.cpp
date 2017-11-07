@@ -101,3 +101,18 @@ void Table::addRow(vector<String> invalues)
 {
 	rows.insert(new Row(invalues));
 }
+
+string Table::tostring()
+{
+	stringstream output;
+	for (auto i : rows)
+	{
+		int temp = 0;
+		for (auto j : header.getcolnames())
+		{
+			if(j == header.getcolnames().begin())
+				output << j.tostring() << "='" << i->getvalues()[temp].tostring() << "'";
+		}
+		output << endl;
+	}
+}

@@ -23,7 +23,7 @@ string Predicate::tostring()
 			toreturn += ",";
 		toreturn += parameters[i]->tostring();
 	}
-	toreturn += ")";
+	toreturn += ")?";
 	return toreturn;
 }
 void Predicate::fillparameters()

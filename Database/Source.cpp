@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		{
 			parser* myparse = new parser(argv[1]);
 			Database* mydata = new Database(myparse->getprogram());
+			cout << mydata->tostring();
 		}
 	return 0;
 }

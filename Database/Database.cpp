@@ -125,3 +125,23 @@ void Database::evaluate(Query* query, Table* table)
 	result = result->rename(newNames);
 	results.push_back(result);
 }
+
+string Database::tostring()
+{
+	
+	stringstream output;
+	vector<Query*> myqueries = datalog->getqueries()->getqueries();
+	for (int i = 0; i < myqueries.size(); i++)
+	{
+		output << myqueries[i]->tostring();
+		if (results[i]->getRows.size() > 0)
+		{
+			output << "Yes(" << results[i]->getRows().size() << ")\n" << results[i]->tostring();
+		}
+		else
+		{
+			output << "No\n";
+		}
+	}
+	return output.str();
+}

@@ -5,6 +5,7 @@
 #include "SelectionKey.h"
 #include "ColumnNamePair.h"
 #include <set>
+#include <sstream>
 class Table
 {
 public:
@@ -19,6 +20,7 @@ public:
 	Header getHeader();
 	set<Row*> getRows();
 	void addRow(vector<String> invalues);
+	string tostring();
 protected:
 	String name;
 	Header header;

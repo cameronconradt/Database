@@ -164,5 +164,8 @@
     <ClCompile Include="parser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="Header.cpp">
+      <Filter>Source Files\Table</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
