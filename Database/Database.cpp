@@ -134,9 +134,10 @@ string Database::tostring()
 	for (int i = 0; i < myqueries.size(); i++)
 	{
 		output << myqueries[i]->tostring();
-		if (results[i]->getRows.size() > 0)
+		set<Row*> rows = results[i]->getRows();
+		if (rows.size() > 0)
 		{
-			output << "Yes(" << results[i]->getRows().size() << ")\n" << results[i]->tostring();
+			output << "Yes(" << rows.size() << ")\n" << results[i]->tostring();
 		}
 		else
 		{
