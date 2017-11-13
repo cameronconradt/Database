@@ -50,7 +50,7 @@ void Row::removeAllOtherColumnsBut(set<int> columnsToKeep)
 	}
 }
 
-vector<String> Row::getvalues()
+vector<String> Row::getvalues() const
 {
 	return values;
 }

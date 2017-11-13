@@ -2,7 +2,7 @@
 
 
 
-Header::Header(set<String> incolumnNames)
+Header::Header(vector<String> incolumnNames)
 {
 	columnNames = incolumnNames;
 }
@@ -21,7 +21,7 @@ Header::~Header()
 {
 }
 
-set<String> Header::getcolnames()
+vector<String> Header::getcolnames()
 {
 	return columnNames;
 }
@@ -29,7 +29,18 @@ set<String> Header::getcolnames()
 void Header::removeAllOtherColumnsBut(set<int> columnsToKeep)
 {
 	int currentcol = 0;
-	for (auto i = columnNames.begin(); i != columnNames.end(); i++)
+	
+	for(std::set<int>::reverse_iterator i = columnsToKeep.rbegin(); i != columnsToKeep.rend(); i++)
+	{
+		for(int j = 0; j < columnNames.size()-1; j++)
+		{
+			if(j+1==*i)
+			{
+				columnNames.erase(columnNames.begin()+j);
+			}
+		}
+	}
+	/*for (auto i = columnNames.begin(); (i != columnNames.end()) && currentcol < columnNames.size(); i++)
 	{
 		for (auto j : columnsToKeep)
 		{
@@ -37,20 +48,15 @@ void Header::removeAllOtherColumnsBut(set<int> columnsToKeep)
 				break;
 			else
 			{
+				cout << "colerased" << currentcol << endl;
 				columnNames.erase(i);
 				currentcol++;
 			}
 		}
-	}
+	}*/
 }
 
 void Header::rename(int column, String newName)
 {
-	int colnum = 0;
-	for (auto i : columnNames)
-	{
-		if (colnum = column)
-			i = newName;
-		colnum++;
-	}
+	columnNames[column] = newName;
 }

@@ -24,9 +24,13 @@ public:
 	friend bool operator==(const Token lh, const Token rh)
 	{
 		if (lh.text == rh.text)
+		{
 			return true;
+		}
 		else
+		{
 			return false;
+		}
 	}
 protected:
 	string type;

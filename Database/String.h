@@ -11,14 +11,14 @@ public:
 	string tostring();
 	string type();
 	friend bool operator<(const String lhs, const String rhs) { 
-		if (lhs.mytoken < rhs.mytoken)
+		if (*lhs.mytoken < *rhs.mytoken)
 			return true;
 		else
 			return false;
 	}
 	friend bool operator==(const String lhs, const String rhs)
 	{
-		if (lhs.mytoken == rhs.mytoken)
+		if (*lhs.mytoken == *rhs.mytoken)
 			return true;
 		else
 			return false;

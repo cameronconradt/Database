@@ -16,16 +16,18 @@ Database::~Database()
 
 void Database::maketables()
 {
+	cout << "for the love" << endl;
 	vector<Scheme*> myschemes = datalog->getschemes()->getschemes();
 	for (int i = 0; i < myschemes.size(); i++)
 	{
 		String* name = new String(myschemes[i]->getid()->gettoken());
-		set<String> colnames;
+		vector<String> colnames;
 		vector<Id*> schemenames = myschemes[i]->getcolumnNames();
 		for (int j = 0; j < schemenames.size(); j++)
 		{
 			String col(schemenames[j]->gettoken());
-			colnames.insert(col);
+			//if(std::find(colnames.begin(), colnames.end(),col) != colnames.end())
+			colnames.push_back(col);
 		}
 		Header head(colnames);
 		Table* temptable = new Table(*name, head);
@@ -37,15 +39,15 @@ void Database::maketables()
 		String name(myfacts[i]->getid()->gettoken());
 		for (int j = 0; j < tables.size(); j++)
 		{
-			if (name == tables[i]->getName())
+			if (name.tostring() == tables[j]->getName().tostring())
 			{
 				vector<String*> stringvalues = myfacts[i]->getstrings();
 				vector<String> values;
 				for (int k = 0; k < stringvalues.size(); k++)
 				{
-					values.push_back(*stringvalues[i]);
+					values.push_back(*stringvalues[k]);
 				}
-				tables[i]->addRow(values);
+				tables[j]->addRow(values);
 			}
 		}
 	}
@@ -59,7 +61,7 @@ void Database::getresults()
 		for (int j = 0; j < tables.size(); j++)
 		{
 			String temp(myqueries[i]->getid()->gettoken());
-			if (temp == tables[j]->getName())
+			if (temp.tostring() == tables[j]->getName().tostring())
 				evaluate(myqueries[i], tables[j]);
 		}
 	}
@@ -70,7 +72,7 @@ void Database::evaluate(Query* query, Table* table)
 	Table* result = new Table(table);
 	set<SelectionKey*> selkeys;
 	vector<Parameter*> parameters = query->getparameters();
-	set<Parameter*> ids;
+	vector<Parameter*> ids;
 	set<int> coltokeep;
 	for (int i = 0; i < parameters.size(); i++)
 	{
@@ -84,13 +86,18 @@ void Database::evaluate(Query* query, Table* table)
 		{
 			if (parameters[i]->type() == "id")
 			{
-				ids.insert(parameters[i]);
+				ids.push_back(parameters[i]);
+				for(int j = 0; j < ids.size()-1; j++)
+				{
+					if(parameters[i]->tostring() == ids[j]->tostring())
+						ids.pop_back();
+				}
 			}
 			for (int j = 0; j < i; j++)
 			{
 				if (parameters[j]->type() == "id" && parameters[i]->type() == "id")
 				{
-					if (parameters[j] == parameters[i])
+					if (parameters[j]->tostring() == parameters[i]->tostring())
 					{
 						SelectionKey* tempkey = new ColColKey(j, i);
 						selkeys.insert(tempkey);
@@ -128,13 +135,14 @@ void Database::evaluate(Query* query, Table* table)
 
 string Database::tostring()
 {
-	
+	cout << "tostring" << endl;
 	stringstream output;
 	vector<Query*> myqueries = datalog->getqueries()->getqueries();
 	for (int i = 0; i < myqueries.size(); i++)
 	{
+		cout << "here" << endl;
 		output << myqueries[i]->tostring();
-		set<Row*> rows = results[i]->getRows();
+		set<Row*, APtrComp> rows = results[i]->getRows();
 		if (rows.size() > 0)
 		{
 			output << "Yes(" << rows.size() << ")\n" << results[i]->tostring();

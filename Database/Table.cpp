@@ -16,9 +16,9 @@ Table::Table(Header inheader)
 
 Table::Table(Table* intable)
 {
-	name = getName();
-	header = getHeader();
-	rows = getRows();
+	name = intable->getName();
+	header = intable->getHeader();
+	rows = intable->getRows();
 }
 
 
@@ -92,7 +92,7 @@ Header Table::getHeader()
 	return header;
 }
 
-set<Row*> Table::getRows()
+set<Row*,APtrComp> Table::getRows()
 {
 	return rows;
 }
@@ -104,22 +104,27 @@ void Table::addRow(vector<String> invalues)
 
 string Table::tostring()
 {
+	cout << "table" << endl;
 	bool first = true;
-	stringstream output;
+	stringstream output("");
 	for (auto i : rows)
 	{
+		first = true;
 		int temp = 0;
-		for (auto j : header.getcolnames())
+		for (int j = 0; j < header.getcolnames().size() ; j++)
 		{
+			cout << "header " << header.getcolnames().size() << endl;
+			cout << "values " << i->getvalues().size() << endl;
 			if (first)
 			{
-				output << j.tostring() << "='" << i->getvalues()[temp].tostring() << "'";
+				output << "  "<< header.getcolnames()[j].tostring() << "=" << i->getvalues()[j].tostring();
 				first = false;
 			}
 			else
 			{
-				output << ", " << j.tostring() << "='" << i->getvalues()[temp].tostring() << "'";
+				output << ", " << header.getcolnames()[j].tostring() << "=" << i->getvalues()[j].tostring() << "";
 			}
+			temp++;
 		}
 		output << endl;
 	}

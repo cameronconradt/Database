@@ -38,8 +38,7 @@ void parser::start()
 		mylex->filter();
 		tokens start = datalogProgram;
 		try {
-			for(int i = 0; i < 4; i++)
-				parse(start);
+			parse(start);
 			if(mylex->gettoken(pos) != end)
 			{
 				throw pos;
@@ -72,59 +71,21 @@ void parser::parse(int token)
 		switch (token)
 		{
 		case datalogProgram:
-			try {
-					if(schemes)
-						throw furthestfail;
 						//cout << pos << endl;
 					match(SCHEMES);
 					match(COLON);
 					parse(scheme);
 					parse(schemeList);
-					schemes = true;
-				}
-			catch (int error)
-			{
-				if(facts)
-					throw furthestfail;
-				pos = temppos-1;
-				if (error > furthestfail)
-					furthestfail = error;
-				try {
-					match(RIGHT_PAREN);
 					match(FACTS);
 					match(COLON);
-					parse(fact);
 					parse(factList);
-			}
-				catch (int errorfacts)
-				{
-					if(rules)
-						throw errorfacts;
-					pos = temppos-1;
-					if (errorfacts > furthestfail)
-						furthestfail = errorfacts;
-					try {
-						match(PERIOD);
-						match(RULES);
-						match(COLON);
-						parse(rule);
-						parse(ruleList);
-					}
-					catch (int errorrules)
-					{
-						if(queries)
-							throw errorrules;
-						pos = temppos-1;
-						if (errorrules > furthestfail)
-							furthestfail = errorrules;
-						match(PERIOD);
-						match(QUERIES);
-						match(COLON);
-						parse(query);
-						parse(queryList);
-					}
-				}
-			}
+					match(RULES);
+					match(COLON);
+					parse(ruleList);
+					match(QUERIES);
+					match(COLON);
+					parse(query);
+					parse(queryList);
 			break;
 		case scheme:
 				match(ID);

@@ -13,23 +13,51 @@ public:
 	bool satisfies(ColColKey* colColKey);
 	bool satisfies(ColValueKey* colValueKey);
 	void removeAllOtherColumnsBut(set<int> columnsToKeep);
-	vector<String> getvalues();
-	inline bool operator < (const Row rh)
+	vector<String> getvalues() const;
+	friend bool operator<(const Row lh, const Row rh)
 	{
+		for (int i = 0; i < lh.values.size() || i < rh.values.size(); i++)
+		{
+			if (!(lh.values[i] == rh.values[i]))
+			{
+				if(lh.values[i] < rh.values[i])
+					return true;
+				else
+					return false;
+			}
+		}
+		return false;
+		/*
 		for (int i = 0; i < this->values.size() || i < rh.values.size(); i++)
 		{
 			if (!(this->values[i] < rh.values[i]))
+			{
+				cout << "returned false:" << this->values[i]
+				return false;
+			}
+		}
+		return true;*/
+		/*cout << "row comparator" << endl;
+		if (lh.values[0] < rh.values[0])
+		{
+			if(lh.values[1] < rh.values[1])
+				return true;
+			else
 				return false;
 		}
-		return true;
-		/*
-		if (this->values[0] < rh.values[0])
-		{
-			if(this->values[1] < rh.values[1])
-				return true;
-			return false;
-		}
+		cout << "row return false" << endl;
 		return false;*/
+	}
+	friend bool operator==(const Row lh, const Row rh)
+	{
+		for (int i = 0; i < lh.values.size() || i < rh.values.size(); i++)
+		{
+			if (!(lh.values[i] == rh.values[i]))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 protected:
 	vector<String> values;

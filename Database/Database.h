@@ -2,6 +2,7 @@
 #include "DatalogProgram.h"
 #include "Table.h"
 #include <sstream>
+#include <iostream>
 class Database
 {
 public:
