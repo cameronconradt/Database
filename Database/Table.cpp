@@ -82,6 +82,70 @@ Table* Table::rename(set<ColumnNamePair> newNames)
 	return result;
 }
 
+Table* Table::naturalJoin(Table* table)
+{
+	vector<int> columnsToMerge = header.getColumnsToMerge(table->getHeader());
+	Header* resultHeader = new Header(header.mergeWith(table->header, columnsToMerge));
+	Table* result = new Table(resultHeader);
+
+	set <ColColKey> colColPairs = header.getColumnMappings(table->header);
+
+	for (auto i : rows)
+	{
+		for (auto j : table->rows)
+		{
+			if (i->matches(j, colColPairs))
+			{
+				result->addRow(i->mergeWith(j, columnsToMerge));
+			}
+		}
+	}
+	return result;
+	/*	vector<int> columnsToMerge = 
+		header.getColumnsToMerge(table.header)
+ 	Table resultHeader = header.mergeWith(table.header, columnsToMerge))
+	Table result = new Table(resultHeader)
+
+	set<ColColPair> colColPairs = 
+		header.getColumnMappings(table.header)
+
+	for( Row row1 in rows)
+		for(Row row2 in table.rows())
+			if(row1.matches(row2, colColPairs)
+				result.addRow(
+					row1.mergeWith(row2,columnsToMerge))
+*/
+}
+
+Table* Table::Union(Table* table)
+{
+	/*	vector<int> newOrderingMap = header.createMapFor(table.getHeader())
+	for(Row row in table.rows)
+		Row rearrangedRow =	row.rearrange(newOrderingMap)
+		rows.add(rearrangedRow)
+*/
+
+	Table* result = new Table(this);
+	vector<int> neworder = header.createMap(table->getHeader());
+	for (auto i : rows)
+	{
+		Row* rearrangedRow = new Row(i->rearrange(neworder));
+		result->addRow(rearrangedRow);
+	}
+	set <ColColKey> colColPairs = header.getColumnMappings(table->header);
+	for (auto i : table->rows)
+	{
+		vector<String> values;
+		for (auto j : colColPairs)
+		{
+			values.push_back(i->getvalues()[j.getcol2()]);
+		}
+		Row* newRow = new Row(values);
+		result->addRow(newRow);
+	}
+	return result;
+}
+
 String Table::getName()
 {
 	return name;
@@ -101,10 +165,14 @@ void Table::addRow(vector<String> invalues)
 {
 	rows.insert(new Row(invalues));
 }
+void Table::addRow(Row* inrow)
+{
+	rows.insert(inrow);
+}
 
 string Table::tostring()
 {
-	cout << "table" << endl;
+	cout << "table =" << endl;
 	bool first = true;
 	stringstream output("");
 	for (auto i : rows)
@@ -113,8 +181,6 @@ string Table::tostring()
 		int temp = 0;
 		for (int j = 0; j < header.getcolnames().size() ; j++)
 		{
-			cout << "header " << header.getcolnames().size() << endl;
-			cout << "values " << i->getvalues().size() << endl;
 			if (first)
 			{
 				output << "  "<< header.getcolnames()[j].tostring() << "=" << i->getvalues()[j].tostring();

@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include "parser.h"
@@ -10,18 +11,18 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
-		ifstream myfile(argv[1]);
-		if (!myfile.is_open())
-		{
-			cout << "Bad file name!" << endl;
-			return 0;
-		}
-		else
-		{
-			parser* myparse = new parser(argv[1]);
-			Database* mydata = new Database(myparse->getprogram());
-			cout << mydata->tostring();
-			cout << "what's wrong??" << endl;
-		}
+	ifstream myfile(argv[1]);
+	if (!myfile.is_open())
+	{
+		cout << "Bad file name!" << endl;
+		return 0;
+	}
+	else
+	{
+		parser* myparse = new parser(argv[1]);
+		Database* mydata = new Database(myparse->getprogram());
+		cout << mydata->tostring();
+		cout << "what's wrong??" << endl;
+	}
 	return 0;
 }

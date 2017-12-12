@@ -21,6 +21,22 @@ public:
 		}
 		return false;
 	}
+	friend bool operator < (const ColColKey lh, const ColColKey rh)
+	{
+		if (lh.col1 < rh.col1)
+		{
+			return true;
+		}
+		else if (lh.col1 == rh.col1)
+		{
+			if (lh.col2 < rh.col2)
+			{
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 protected:
 	int col1;
 	int col2;

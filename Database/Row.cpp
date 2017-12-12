@@ -34,8 +34,19 @@ bool Row::satisfies(ColValueKey* colValueKey)
 
 void Row::removeAllOtherColumnsBut(set<int> columnsToKeep)
 {
-	int currentcol = 0;
-	for (auto i = values.begin(); i != values.end(); i++)
+	for (std::set<int>::reverse_iterator i = columnsToKeep.rbegin(); i != columnsToKeep.rend(); i++)
+	{
+		for (int j = 0; j < values.size() - 1; j++)
+		{
+			if (j + 1 == *i)
+			{
+				values.erase(values.begin() + j);
+			}
+		}
+	}
+
+	/*int currentcol = 0;
+	for (int i = 0; i < values.size(); i++)
 	{
 		for (auto j : columnsToKeep)
 		{
@@ -47,10 +58,59 @@ void Row::removeAllOtherColumnsBut(set<int> columnsToKeep)
 				currentcol++;
 			}
 		}
-	}
+	}*/
 }
 
 vector<String> Row::getvalues() const
 {
 	return values;
+}
+
+bool Row::matches(Row otherRow, set<ColColKey> columnsToMerge)
+{
+	bool result = true;
+	for (auto i : columnsToMerge)
+	{
+		if (!(values[i.getcol1()] == otherRow.values[i.getcol2()]))
+			result = false;
+	}
+	return result;
+
+	/*	bool result = true
+	int i = 0
+	while(i < colColPairs.length() && result) {
+		result = values[colColPairs[0]] == 
+			   	otherRow.values[colColPairs[1]]
+		i++
+	}
+	return result
+*/
+}
+
+Row* Row::mergeWith(Row* inrow, vector<int> columnsToMerge)
+{
+	Row* result = new Row(this);
+	for (auto i : columnsToMerge)
+	{
+		result->values.push_back(inrow->values[i]);
+	}
+	return result;
+	/*	Row result = new Row(this)
+	for(int i in columnsToMerge)
+		result.values.append(
+			otherRow.values[columnsToMerge[i]];
+	return result;
+*/
+}
+
+Row* Row::rearrange(vector<int> order)
+{
+	vector<String> newvalues;
+	for (int i = 0; i < order.size(); i++)
+	{
+		if(order[i] != -1)
+			newvalues.push_back(values[order[i]]);
+	}
+	Row* result = new Row(newvalues);
+	return result;
 }
