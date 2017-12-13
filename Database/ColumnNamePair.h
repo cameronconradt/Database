@@ -11,9 +11,9 @@ public:
 	{
 		if (lh.col < rh.col)
 		{
-			if(lh.name < rh.name)
-				return true;
-			return false;
+			//if(lh.name < rh.name)
+				//return true;
+			return true;
 		}
 		return false;
 	}

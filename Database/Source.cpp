@@ -20,8 +20,13 @@ int main(int argc, char* argv[])
 	else
 	{
 		parser* myparse = new parser(argv[1]);
-		Database* mydata = new Database(myparse->getprogram());
-		cout << mydata->tostring();
+		if (myparse->getprogram() != NULL)
+		{
+			Database* mydata = new Database(myparse->getprogram());
+			cout << mydata->tostring();
+		}
+		else
+			cout << myparse->simpletostring();
 	}
 	return 0;
 }
