@@ -16,7 +16,6 @@ Database::~Database()
 
 void Database::maketables()
 {
-	cout << "for the love" << endl;
 	vector<Scheme*> myschemes = datalog->getschemes()->getschemes();
 	for (int i = 0; i < myschemes.size(); i++)
 	{
@@ -151,6 +150,7 @@ string Database::tostring()
 		{
 			output << "No\n";
 		}
+		cout << "output = " << output.str() << endl;
 	}
 	return output.str();
 }

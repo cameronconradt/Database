@@ -34,7 +34,19 @@ bool Row::satisfies(ColValueKey* colValueKey)
 
 void Row::removeAllOtherColumnsBut(set<int> columnsToKeep)
 {
-	for (std::set<int>::reverse_iterator i = columnsToKeep.rbegin(); i != columnsToKeep.rend(); i++)
+	vector<String> tempkept;
+	for (auto i : columnsToKeep)
+	{
+		tempkept.push_back(values[i]);
+	}
+	for (int i = 0; values.size() != tempkept.size(); i++)
+	{
+		if (i < tempkept.size())
+			values[i] = tempkept[i];
+		else
+			values.pop_back();
+	}
+	/*for (std::set<int>::reverse_iterator i = columnsToKeep.rbegin(); i != columnsToKeep.rend(); i++)
 	{
 		for (int j = 0; j < values.size() - 1; j++)
 		{
@@ -44,7 +56,7 @@ void Row::removeAllOtherColumnsBut(set<int> columnsToKeep)
 			}
 		}
 	}
-
+	*/
 	/*int currentcol = 0;
 	for (int i = 0; i < values.size(); i++)
 	{

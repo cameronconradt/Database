@@ -28,7 +28,20 @@ vector<String> Header::getcolnames()
 
 void Header::removeAllOtherColumnsBut(set<int> columnsToKeep)
 {
-	int currentcol = columnNames.size();
+
+	vector<String> keptcolumns;
+	for (std::set<int>::iterator i = columnsToKeep.begin(); i != columnsToKeep.end(); i++)
+	{
+		keptcolumns.push_back(columnNames[*i]);
+	}
+	for (int i = 0; columnNames.size() != keptcolumns.size() ; i++)
+	{
+		if (i < keptcolumns.size())
+			columnNames[i] = keptcolumns[i];
+		else
+			columnNames.pop_back();
+	}
+	/*int currentcol = columnNames.size();
 	for(std::set<int>::reverse_iterator i = columnsToKeep.rbegin(); i != columnsToKeep.rend(); i++)
 	{
 		for(int j = currentcol; j >= 0; j--, currentcol--)
@@ -39,7 +52,7 @@ void Header::removeAllOtherColumnsBut(set<int> columnsToKeep)
 			}
 		}
 	}
-	/*for (auto i = columnNames.begin(); (i != columnNames.end()) && currentcol < columnNames.size(); i++)
+	for (auto i = columnNames.begin(); (i != columnNames.end()) && currentcol < columnNames.size(); i++)
 	{
 		for (auto j : columnsToKeep)
 		{
