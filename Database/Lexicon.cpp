@@ -48,7 +48,7 @@ void Lexicon::filter()
 	{
 		//cout << chars.size() << endl;
 		startline = endline;
-		if (isalpha(chars[i]))
+		if (isalnum(chars[i]))
 		{
 			i = id(startline, i);
 		}
@@ -342,7 +342,7 @@ int Lexicon::id(int line, int pos)
 		for (int i = pos; toreturn == 0; i++)
 		{
 			text += chars[i];
-			if (isspace(chars[i + 1]) || chars[i + 1] == '\n' || !isalpha(chars[i + 1]))
+			if (isspace(chars[i + 1]) || chars[i + 1] == '\n' || !isalnum(chars[i + 1]))
 				toreturn = i;
 		}
 		Token* mytoken = new Token("ID", text, line);

@@ -134,13 +134,11 @@ void Database::evaluate(Query* query, Table* table)
 
 string Database::tostring()
 {
-	cout << "tostring" << endl;
 	stringstream output;
 	vector<Query*> myqueries = datalog->getqueries()->getqueries();
 	for (int i = 0; i < myqueries.size(); i++)
 	{
-		cout << "here" << endl;
-		output << myqueries[i]->tostring();
+		output << myqueries[i]->tostring() << " ";
 		set<Row*, APtrComp> rows = results[i]->getRows();
 		if (rows.size() > 0)
 		{
@@ -150,7 +148,6 @@ string Database::tostring()
 		{
 			output << "No\n";
 		}
-		cout << "output = " << output.str() << endl;
 	}
 	return output.str();
 }

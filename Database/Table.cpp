@@ -172,7 +172,6 @@ void Table::addRow(Row* inrow)
 
 string Table::tostring()
 {
-	cout << "table =" << endl;
 	bool first = true;
 	stringstream output("");
 	for (auto i : rows)
@@ -191,8 +190,10 @@ string Table::tostring()
 				output << ", " << header.getcolnames()[j].tostring() << "=" << i->getvalues()[j].tostring() << "";
 			}
 			temp++;
+			if(j == header.getcolnames().size()-1)
+				output << endl;
 		}
-		output << endl;
+		
 	}
 	return output.str();
 }
